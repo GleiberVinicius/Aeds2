@@ -6,6 +6,26 @@ typedef struct
     int chave; // Identificador sem ambiguidade[cite: 2]
     int valor;
 } No;
+int remover(No v[], int n, int x)
+{
+    int indice;
+
+    if (n != 0)
+    {
+        indice = busca(v, n, x);
+
+        if (indice != 0)
+        {
+            for (int i = indice; i <= n - 1; i++)
+            {
+                v[i] = v[i + 1];
+            }
+            n = n - 1;
+        }
+    }
+
+    return n;
+}
 
 void imprimir(No v[], int n)
 {
@@ -26,7 +46,7 @@ void imprimir(No v[], int n)
 int insere(No v[], int n, int x)
 {
     int insere;
-    if (n < 5)
+    if (n < 6)
     {
         if (busca(v, n, x) == 0)
         {
@@ -83,10 +103,11 @@ int main()
     int buscar = 10; // Faltava declarar o valor que você quer buscar
     int opcao = 0;
     int inserir = 2;
+    int retirar = 5;
+    int resultado3, resultado2;
 
     // Chamada da função passando o vetor, o tamanho e o valor buscado
     int resultado = busca(v, n, buscar);
-    int resultado2 = insere(v, n, inserir);
     do
     {
         printf("\n===== MENU =====\n");
@@ -110,8 +131,12 @@ int main()
             }
             break;
         case 2:
-            if (resultado2 != 0)
+            // Executa a inserção no exato momento em que a opção 2 é escolhida
+            resultado2 = insere(v, n, inserir);
+
+            if (resultado2 > 0)
             {
+                n = resultado2; // Atualiza o tamanho da lista no main (n passa a ser 6)
                 printf("O valor %d foi inserido com sucesso.\n", inserir);
             }
             else if (resultado2 == 0)
@@ -121,6 +146,20 @@ int main()
             else
             {
                 printf("Nao foi possivel inserir o valor %d. O vetor esta cheio.\n", inserir);
+            }
+            break;
+        case 3:
+            // Executa a inserção no exato momento em que a opção 2 é escolhida
+            resultado3 = remover(v, n, retirar);
+
+            if (resultado3 < n)
+            {
+                n = resultado3; // Atualiza o tamanho da lista no main (n passa a ser 6)
+                printf("O valor %d foi removido com sucesso.\n", retirar);
+            }
+            else if (resultado3 == n) 
+            {
+                printf("O valor %d nao existe no vetor.\n", retirar);
             }
             break;
         case 4:
