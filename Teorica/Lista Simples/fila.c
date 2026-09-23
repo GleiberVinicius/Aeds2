@@ -13,18 +13,18 @@ typedef struct
 No P[101];
 No remover(No P[])
 {
-    No removido = {-1, -1}; // Cria um nó "nulo" para caso de erro[cite: 1]
+    No removido = {-1, -1}; 
 
     if (topo == 0)
     {
         printf("A pilha esta vazia!\n");
-        return removido; // Retorna nulo no caso de pilha vazia[cite: 1]
+        return removido; 
     }
 
     if (topo != 0)
     {
-        removido = P[topo]; // O nó inteiro é resgatado[cite: 1]
-        topo = topo - 1;    // O topo desce uma posição[cite: 1]
+        removido = P[topo];
+        topo = topo - 1; 
     }
 
     return removido; // Retorna o nó resgatado
