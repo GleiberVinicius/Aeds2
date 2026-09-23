@@ -6,6 +6,7 @@ typedef struct
     int chave; // Identificador sem ambiguidade[cite: 2]
     int valor;
 } No;
+
 int remover(No v[], int n, int x)
 {
     int indice;
@@ -157,7 +158,7 @@ int main()
                 n = resultado3; // Atualiza o tamanho da lista no main (n passa a ser 6)
                 printf("O valor %d foi removido com sucesso.\n", retirar);
             }
-            else if (resultado3 == n) 
+            else if (resultado3 == n)
             {
                 printf("O valor %d nao existe no vetor.\n", retirar);
             }
